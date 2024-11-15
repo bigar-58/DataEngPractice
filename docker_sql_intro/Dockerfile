@@ -1,10 +1,10 @@
 FROM python:3.11
 
-RUN pip install pandas
-RUN pip install pyarrow
+RUN apt-get install wget
+RUN pip install pandas sqlalchemy psycopg2
 
 #Sets the working directory for the docker image and copies the python script
 WORKDIR /app
-COPY pipeline.py pipeline.py
+COPY ingest_data.py ingest_data.py
 
-ENTRYPOINT [ "python", "pipeline.py" ]
+ENTRYPOINT [ "python", "ingest_data.py" ]
